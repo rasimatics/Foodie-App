@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, Text, TextInput, Image, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, Image, View, FlatList, TouchableOpacity } from 'react-native';
+import {Card} from "../components/Home/Card"
 
 export default function Home() {
     const [activeNav, setActiveNav] = useState({
@@ -25,12 +26,31 @@ export default function Home() {
         },
     ];
 
+    const FOODS = [
+        {
+            id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+            title: 'Foods',
+        },
+        {
+            id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+            title: 'Drinks',
+        },
+        {
+            id: '58694a0f-3da1-471f-bd96-145571e29d72',
+            title: 'Snacks',
+        },
+        {
+            id: '58694a0f-3da2-491f-bd99-145577eb9d72',
+            title: 'Souce',
+        },
+    ];
+
     const changeActive = (id) => {
         setActiveNav({ id: id })
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.topContainer}>
                 <View style={styles.topIcons}>
                     <TouchableOpacity><Image source={require('../assets/images/hamburger.png')} /></TouchableOpacity>
@@ -51,11 +71,10 @@ export default function Home() {
                     data={NAVITEMS}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    style={styles.navItemsContainer}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index}) => (
                         <TouchableOpacity
                             onPress={() => changeActive(item.id)}
-                            style={[styles.item, activeNav.id == item.id && { borderColor: "#FA4A0C", borderBottomWidth: 2 }]}>
+                            style={[styles.item, activeNav.id == item.id && { borderColor: "#FA4A0C", borderBottomWidth: 2 },index==0&&{marginLeft:60}]}>
                             <Text
                                 style={[styles.itemTitle, activeNav.id == item.id && { color: "#FA4A0C" }]}>
                                 {item.title}
@@ -63,32 +82,51 @@ export default function Home() {
                         </TouchableOpacity>
                     )}
                 />
+
+                <View style={styles.foodContainer}>
+                    <TouchableOpacity style={styles.seeMoreButton}><Text style={styles.seeMoreText}>see more</Text></TouchableOpacity>
+                    <FlatList 
+                        data={FOODS}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        renderItem={({ item, index}) => (
+                            <Card 
+                                image={require('../assets/images/plate1.png')} 
+                                foodTitle="Veggie tomato mix" 
+                                foodPrice="N1,900"
+                                index={index}
+                                />
+                        )}
+                    />
+                </View>
             </View>
-        </SafeAreaView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#F2F2F2",
     },
     topContainer: {
-        padding: 40,
+        padding: 35,
+        paddingBottom:15
     },
     topIcons: {
-        marginTop: 40,
+        marginTop: 25,
         flexDirection: "row",
         justifyContent: "space-between",
     },
     topTextContainer: {
-        marginTop: 20,
+        marginTop: 15,
     },
     topText: {
         fontSize: 34,
         fontWeight: "bold",
     },
     searchBoxContainer: {
-        marginTop: 20,
+        marginTop: 15,
         position: 'relative'
     },
     searchBox: {
@@ -105,14 +143,6 @@ const styles = StyleSheet.create({
         top: 15
     },
 
-    bottomContainer: {
-        alignItems: 'flex-end',
-    },
-
-    navItemsContainer: {
-        width: "85%",
-    },
-
     item: {
         marginRight: 15,
         padding: 15,
@@ -121,5 +151,16 @@ const styles = StyleSheet.create({
     itemTitle: {
         fontSize: 17,
         color: "#9A9A9D",
-    }
+    },
+
+    seeMoreButton: {
+        padding:10,
+        alignItems: "flex-end",
+    },
+
+    seeMoreText: {
+        color: "#FA4A0C",
+        fontWeight: "bold",
+        fontSize:17,
+    },
 })

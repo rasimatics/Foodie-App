@@ -11,11 +11,18 @@ export function MyTab() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        showLabel:false
+        showLabel:false,
+        style:{
+          backgroundColor: "#F2F2F2",
+          height:60,
+          elevation:0,
+          shadowOpacity:0,
+          borderTopWidth: 0,
+        }
       }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-
+          
           switch (route.name) {
             case "Home":
               return focused

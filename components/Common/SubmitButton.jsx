@@ -13,10 +13,11 @@ export function SubmitButton(props) {
 
 const styles = StyleSheet.create({
     submitButton: {
-        width: "75%",
+        width: "80%",
         padding: 20,
         backgroundColor: "#FA4A0C",
         borderRadius: 25,
+        alignSelf:"center",
     },
 
     submitButtonText: {

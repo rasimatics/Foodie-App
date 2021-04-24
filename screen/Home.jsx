@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, Image, View, FlatList, TouchableOpacity } from 'react-native';
-import {Card} from "../components/Home/Card"
+import { Card } from "../components/Home/Card"
 
-export function Home() {
+export function Home({navigation}) {
     const [activeNav, setActiveNav] = useState({
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     })
@@ -61,7 +61,7 @@ export function Home() {
                     <Text style={styles.topText}>food for you</Text>
                 </View>
                 <View style={styles.searchBoxContainer}>
-                    <TextInput style={styles.searchBox} />
+                    <TextInput style={styles.searchBox} placeholder="Search" />
                     <Image style={styles.searchIcon} source={require('../assets/images/search.png')} />
                 </View>
             </View>
@@ -71,10 +71,10 @@ export function Home() {
                     data={NAVITEMS}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({ item, index}) => (
+                    renderItem={({ item, index }) => (
                         <TouchableOpacity
                             onPress={() => changeActive(item.id)}
-                            style={[styles.item, activeNav.id == item.id && { borderColor: "#FA4A0C", borderBottomWidth: 2 },index==0&&{marginLeft:60}]}>
+                            style={[styles.item, activeNav.id == item.id && { borderColor: "#FA4A0C", borderBottomWidth: 2 }, index == 0 && { marginLeft: 60 }]}>
                             <Text
                                 style={[styles.itemTitle, activeNav.id == item.id && { color: "#FA4A0C" }]}>
                                 {item.title}
@@ -85,17 +85,19 @@ export function Home() {
 
                 <View style={styles.foodContainer}>
                     <TouchableOpacity style={styles.seeMoreButton}><Text style={styles.seeMoreText}>see more</Text></TouchableOpacity>
-                    <FlatList 
+                    <FlatList
                         data={FOODS}
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        renderItem={({ item, index}) => (
-                            <Card 
-                                image={require('../assets/images/plate1.png')} 
-                                foodTitle="Veggie tomato mix" 
+                        renderItem={({ item, index }) => (
+                            <Card
+                                image={require('../assets/images/plate1.png')}
+                                foodTitle="Veggie tomato mix"
                                 foodPrice="N1,900"
                                 index={index}
-                                />
+                                lastIndex={FOODS.length - 1}
+                                navigation={navigation}
+                            />
                         )}
                     />
                 </View>
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         padding: 35,
-        paddingBottom:15
+        paddingBottom: 15
     },
     topIcons: {
         marginTop: 25,
@@ -154,13 +156,13 @@ const styles = StyleSheet.create({
     },
 
     seeMoreButton: {
-        padding:10,
+        padding: 10,
         alignSelf: "flex-end",
     },
 
     seeMoreText: {
         color: "#FA4A0C",
         fontWeight: "bold",
-        fontSize:17,
+        fontSize: 17,
     },
 })

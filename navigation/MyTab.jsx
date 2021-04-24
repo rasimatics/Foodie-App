@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Auth } from "../screen/Auth";
 import { Home } from "../screen/Home";
+import { Profile } from "../screen/Profile";
 import { Ionicons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
 
@@ -32,7 +33,7 @@ export function MyTab() {
               return focused
                 ? <Entypo name="heart" size={24} color="#FA4A0C" />
                 : <Entypo name="heart-outlined" size={24} color={color} />
-            case "Auth2":
+            case "Profile":
               return focused
                 ? <MaterialCommunityIcons name="account-circle" size={24} color="#FA4A0C" />
                 : <MaterialCommunityIcons name="account-circle" size={24} color={color} />;
@@ -45,7 +46,7 @@ export function MyTab() {
       })}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Auth" component={Auth} />
-      <Tab.Screen name="Auth2" component={Auth} />
+      <Tab.Screen name="Profile" component={Profile} />
       <Tab.Screen name="Auth3" component={Auth} />
     </Tab.Navigator>
   );

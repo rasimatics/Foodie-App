@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, Image, View, FlatList, TouchableOpacity } from 'react-native';
 import { Card } from "../components/Home/Card"
 
+
+
 export function Home({navigation}) {
     const [activeNav, setActiveNav] = useState({
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     })
+
 
     const NAVITEMS = [
         {
@@ -54,7 +57,7 @@ export function Home({navigation}) {
             <View style={styles.topContainer}>
                 <View style={styles.topIcons}>
                     <TouchableOpacity><Image source={require('../assets/images/hamburger.png')} /></TouchableOpacity>
-                    <TouchableOpacity><Image source={require('../assets/images/shopping-cart.png')} /></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.navigate("Cart")}><Image source={require('../assets/images/shopping-cart.png')} /></TouchableOpacity>
                 </View>
                 <View style={styles.topTextContainer}>
                     <Text style={styles.topText}>Delicious</Text>

@@ -1,28 +1,53 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, FlatList, Dimensions } from 'react-native';
 import { Description } from "../components/ProductDetail/Description"
 import { SubmitButton } from '../components/Common/SubmitButton'
 import { Ionicons } from "@expo/vector-icons"
 
-export function ProductDetail() {
+export function ProductDetail({ navigation }) {
     const [activeDotId, setActiveDotId] = useState(0)
-    const NUM_DOTS = 4
 
     const activeDotStyle = {
         backgroundColor: "#FA4A0C"
     }
 
+    const IMAGES = [
+        { image: require("../assets/images/plateBig1.png"), id: 1 },
+        { image: require("../assets/images/plateBig1.png"), id: 2 },
+        { image: require("../assets/images/plateBig1.png"), id: 3 },
+        { image: require("../assets/images/plateBig1.png"), id: 4 },
+    ]
+
+    const NUM_DOTS = IMAGES.length
+
+    const width = Dimensions.get("screen").width
+
+    const changePosition = (e) => {
+        const offset = e.nativeEvent.contentOffset.x
+        const index = Math.ceil(offset / width)
+        setActiveDotId(index)
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.innerContainer}>
                 <View style={styles.topIcons}>
-                    <Ionicons name="chevron-back-outline" size={24} color="black" />
+                    <Ionicons name="chevron-back-outline" size={24} color="black" onPress={() => navigation.goBack()} />
                     <Ionicons name="heart-outline" size={24} color="black" />
                 </View>
                 <View style={styles.imagesContainer}>
-                    <View style={styles.images}>
-                        <Image source={require("../assets/images/plateBig1.png")} />
-                    </View>
+                    <FlatList
+                        data={IMAGES}
+                        horizontal
+                        pagingEnabled
+                        onMomentumScrollEnd={changePosition}
+                        onMomentumScrollBegin={changePosition}
+                        style={styles.images}
+                        showsHorizontalScrollIndicator={false}
+                        renderItem={({ item}) => (
+                            <Image source={item.image} key={item.id} />
+                        )}
+                    />
                     <View style={styles.dots}>
                         {Array.from(Array(NUM_DOTS), (elem, index) => {
                             return <View key={index} style={[styles.dot, index == activeDotId && activeDotStyle]}></View>
@@ -37,7 +62,7 @@ export function ProductDetail() {
 
                 <Description title="Delivery info" paragraph="Delivered between monday aug and thursday 20 from 8pm to 91:32 pm" />
                 <Description title="Return policy" paragraph="All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately." />
-                <SubmitButton buttonName="Add to cart"/>
+                <SubmitButton buttonName="Add to cart" />
             </View>
         </View>
     );
@@ -46,8 +71,8 @@ export function ProductDetail() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingVertical: 40,
-        paddingHorizontal: 25
+        marginVertical: 40,
+        marginHorizontal: 25
     },
     innerContainer: {
         flex: 1,

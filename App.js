@@ -1,18 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Auth from './screen/Auth';
-import Home from './screen/Home';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { MyStack } from "./navigation/MyStack";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-        <Home/>
-    </View>
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

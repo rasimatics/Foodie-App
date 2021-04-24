@@ -5,7 +5,7 @@ import {LoginForm} from '../components/Auth/LoginForm'
 import {SignupForm} from '../components/Auth/SignupForm'
 
 
-export default function Auth() {
+export function Auth({navigation}) {
     const [loginActive, setLoginActive] = useState(true);
 
     const activeStyle = {
@@ -38,7 +38,7 @@ export default function Auth() {
 
             <View style={styles.bottomPart}>
                 {loginActive ?<LoginForm />:<SignupForm />}
-                <SubmitButton buttonName={loginActive? "Login":"Sign up" } />
+                <SubmitButton buttonName={loginActive? "Login":"Sign up" } onPress={()=>navigation.navigate("Home")} />
             </View>
         </View>
     );

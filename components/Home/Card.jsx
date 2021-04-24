@@ -23,6 +23,7 @@ export function Card({ image, foodTitle, foodPrice, index }) {
 
 const styles = StyleSheet.create({
     foodCard:{
+        margin:10,
         marginLeft:20,
         width:220,
         height:321,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, Image, View, FlatList, TouchableOpacity } from 'react-native';
 import {Card} from "../components/Home/Card"
 
-export default function Home() {
+export function Home() {
     const [activeNav, setActiveNav] = useState({
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     })
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 
     seeMoreButton: {
         padding:10,
-        alignItems: "flex-end",
+        alignSelf: "flex-end",
     },
 
     seeMoreText: {

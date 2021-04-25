@@ -12,18 +12,18 @@ export function MyTab() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        showLabel:false,
-        style:{
+        showLabel: false,
+        style: {
           backgroundColor: "#F2F2F2",
-          height:60,
-          elevation:0,
-          shadowOpacity:0,
+          height: 60,
+          elevation: 0,
+          shadowOpacity: 0,
           borderTopWidth: 0,
         }
       }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          
+
           switch (route.name) {
             case "Home":
               return focused
@@ -46,7 +46,9 @@ export function MyTab() {
       })}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Auth" component={Auth} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen options={{
+        tabBarVisible: false,
+      }} name="Profile" component={Profile} />
       <Tab.Screen name="Auth3" component={Auth} />
     </Tab.Navigator>
   );

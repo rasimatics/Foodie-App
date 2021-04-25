@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text, FlatList, Dimensions } from 'react-native';
 import { Description } from "../components/ProductDetail/Description"
 import { SubmitButton } from '../components/Common/SubmitButton'
-import { Ionicons } from "@expo/vector-icons"
+import { Header } from "../components/Common/Header"
 
 export function ProductDetail({ navigation }) {
     const [activeDotId, setActiveDotId] = useState(0)
@@ -31,20 +31,16 @@ export function ProductDetail({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.innerContainer}>
-                <View style={styles.topIcons}>
-                    <Ionicons name="chevron-back-outline" size={24} color="black" onPress={() => navigation.goBack()} />
-                    <Ionicons name="heart-outline" size={24} color="black" />
-                </View>
+                <Header navigation={navigation}/>
                 <View style={styles.imagesContainer}>
                     <FlatList
                         data={IMAGES}
                         horizontal
                         pagingEnabled
-                        onMomentumScrollEnd={changePosition}
-                        onMomentumScrollBegin={changePosition}
+                        onScroll={changePosition}
                         style={styles.images}
                         showsHorizontalScrollIndicator={false}
-                        renderItem={({ item}) => (
+                        renderItem={({ item }) => (
                             <Image source={item.image} key={item.id} />
                         )}
                     />
@@ -71,19 +67,14 @@ export function ProductDetail({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginVertical: 40,
-        marginHorizontal: 25
     },
     innerContainer: {
         flex: 1,
         padding: 10,
-    },
-    topIcons: {
-        flexDirection: "row",
-        justifyContent: "space-between"
+        marginVertical: 40,
+        marginHorizontal: 25
     },
     imagesContainer: {
-        justifyContent: "center",
         alignItems: 'center',
     },
 

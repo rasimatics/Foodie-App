@@ -12,7 +12,7 @@ export function FormField ({fieldname, isPassword}){
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom:15
+        marginBottom:15,
     },
     label: {
         color:"#919191",

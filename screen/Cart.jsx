@@ -1,17 +1,26 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native'
 import {Header} from "../components/Common/Header"
-import {InfoCard} from "../components/Profile/InfoCard";
-import {PaymentCard} from "../components/Profile/PaymentCard";
+import {MaterialCommunityIcons} from '@expo/vector-icons';
+import {CartItem} from "../components/Cart/CartItem";
+import {SubmitButton} from "../components/Common/SubmitButton";
 
-export function Cart({navigation}){
+
+export function Cart({navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.innerContainer}>
                 <View style={{flex: 1}}>
                     <Header navigation={navigation} title="Cart"/>
-
+                    <View style={styles.textContainer}>
+                        <MaterialCommunityIcons name="gesture-swipe" size={20} color="black"/>
+                        <Text style={styles.text}>  swipe on an item to delete</Text>
+                    </View>
+                    <CartItem />
+                    <CartItem />
+                    <CartItem />
                 </View>
+                <SubmitButton  buttonName="Complete order"/>
             </View>
         </View>
     )
@@ -28,4 +37,13 @@ const styles = StyleSheet.create({
         marginVertical: 40,
         marginHorizontal: 25,
     },
+    textContainer: {
+        marginVertical: 30,
+        flexDirection: "row",
+        justifyContent: "center"
+    },
+    text: {
+        fontSize: 13,
+        textAlign: "center"
+    }
 })

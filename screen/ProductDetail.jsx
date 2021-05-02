@@ -31,7 +31,7 @@ export function ProductDetail({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.innerContainer}>
-                <Header navigation={navigation}/>
+                <Header navigation={navigation} icon={"heart-outline"}/>
                 <View style={styles.imagesContainer}>
                     <FlatList
                         data={IMAGES}

@@ -8,7 +8,7 @@ export function Header(props) {
         <View style={styles.topIcons}>
             <Ionicons name="chevron-back-outline" size={24} color="black" onPress={() => props.navigation.goBack()}/>
             {props.title && <Text style={[styles.title, !props.icon && {marginRight: 20}]}> {props.title}</Text>}
-            <Ionicons name={props.icon} size={24} color="black" onPress={() => props.navigation.goBack()}/>
+            <Ionicons name={props.icon} size={24} color="black" onPress={() => alert("Clicked wish")}/>
         </View>
     );
 }

@@ -45,11 +45,11 @@ export function MyTab() {
         },
       })}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Auth" component={Auth} />
+      <Tab.Screen name="Auth" component={Home} />
       <Tab.Screen options={{
         tabBarVisible: false,
       }} name="Profile" component={Profile} />
-      <Tab.Screen name="Auth3" component={Auth} />
+      <Tab.Screen name="Auth3" component={Home} />
     </Tab.Navigator>
   );
 }

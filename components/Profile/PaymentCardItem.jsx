@@ -6,7 +6,7 @@ import {FontAwesome, Ionicons} from '@expo/vector-icons';
 export function PaymentCardItem(props) {
     return (
         <View style={styles.container}>
-            <Ionicons name={props.active?"radio-button-on":"radio-button-off"} size={24} color="#FA4A0C"/>
+            <Ionicons name={props.active?"radio-button-on":"radio-button-off"} size={26} color="#FA4A0C"/>
             <TouchableOpacity onPress={()=>props.setActive(props.id)} style={[styles.iconAndText,!props.lastItem&&{ borderBottomWidth:1, paddingBottom:10}]}>
                 <View style={[styles.iconContainer,{backgroundColor: props.color}]}>
                     <FontAwesome name={props.icon} size={18} color="#fff"/>

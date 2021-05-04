@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native'
-
+import {View, Text, Image, TouchableOpacity, StyleSheet, Animated} from 'react-native'
+import {Swipeable} from "react-native-gesture-handler";
+import {Ionicons} from "@expo/vector-icons";
 
 export function CartItem() {
     const [counter, setCounter] = useState(1)
@@ -12,25 +13,43 @@ export function CartItem() {
             setCounter((counter) => counter + value)
         }
     }
+
+    const rightAction = () => (
+        <View style={{flexDirection: "row", alignItems: "center", marginHorizontal:10}}>
+            <TouchableOpacity style={styles.iconContainer}>
+                <Ionicons name={"heart-outline"} size={20} color={"#fff"}/>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconContainer}>
+                <Ionicons name={"trash-outline"} size={20} color={"#fff"}/>
+            </TouchableOpacity>
+        </View>
+    )
+
     return (
-        <View style={styles.container}>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} resizeMode={"contain"} source={require("../../assets/images/plate1.png")}/>
-            </View>
-            <View style={styles.dataContainer}>
-                <Text style={{fontSize: 18, fontWeight: "bold", marginBottom: 8}}>Veggie tomato mix</Text>
-                <Text style={{fontSize: 16, color: "#FA4A0C", fontWeight: "bold"}}>#1,900</Text>
-                <View style={styles.counterContainer}>
-                    <TouchableOpacity onPress={() => handleCounter("decrease")} style={styles.button}>
-                        <Text style={styles.text}>-</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.text}>{counter}</Text>
-                    <TouchableOpacity onPress={() => handleCounter("increase")} style={styles.button}>
-                        <Text style={styles.text}>+</Text>
-                    </TouchableOpacity>
+        <Swipeable
+            renderRightActions={rightAction}
+            overshootLeft={false}
+        >
+            <View
+                style={styles.container}>
+                <View style={styles.imageContainer}>
+                    <Image style={styles.image} source={require("../../assets/images/plateBig1.png")}/>
+                </View>
+                <View style={styles.dataContainer}>
+                    <Text style={{fontSize: 18, fontWeight: "bold", marginBottom: 8}}>Veggie tomato mix</Text>
+                    <Text style={{fontSize: 16, color: "#FA4A0C", fontWeight: "bold"}}>#1,900</Text>
+                    <View style={styles.counterContainer}>
+                        <TouchableOpacity onPress={() => handleCounter("decrease")} style={styles.button}>
+                            <Text style={styles.text}>-</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.text}>{counter}</Text>
+                        <TouchableOpacity onPress={() => handleCounter("increase")} style={styles.button}>
+                            <Text style={styles.text}>+</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
+        </Swipeable>
     )
 }
 
@@ -46,10 +65,12 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: 100,
         height: 100,
+        justifyContent: "center",
+        alignItems: "center"
     },
     image: {
-        height: '100%',
-        width: '100%',
+        height: '80%',
+        width: '80%',
     },
     dataContainer: {
         flex: 1,
@@ -72,7 +93,15 @@ const styles = StyleSheet.create({
     },
     button: {
         paddingHorizontal: 6,
+    },
+    iconContainer:{
+        backgroundColor:"#DF2C2C",
+        borderRadius:30,
+        padding: 10,
+        margin:5,
     }
+
+
 
 
 })

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native'
 import {Header} from "../components/Common/Header"
-import {MaterialCommunityIcons} from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import {CartItem} from "../components/Cart/CartItem";
 import {SubmitButton} from "../components/Common/SubmitButton";
 
@@ -13,14 +13,16 @@ export function Cart({navigation}) {
                 <View style={{flex: 1}}>
                     <Header navigation={navigation} title="Cart"/>
                     <View style={styles.textContainer}>
-                        <MaterialCommunityIcons name="gesture-swipe" size={20} color="black"/>
-                        <Text style={styles.text}>  swipe on an item to delete</Text>
+                        <MaterialIcons name="swipe" size={20} color="black"/>
+                        <Text style={styles.text}> swipe on an item to delete</Text>
                     </View>
-                    <CartItem />
-                    <CartItem />
-                    <CartItem />
+                    <View>
+                        <CartItem/>
+                        <CartItem/>
+                        <CartItem/>
+                    </View>
                 </View>
-                <SubmitButton  buttonName="Complete order"/>
+                <SubmitButton buttonName="Complete order"/>
             </View>
         </View>
     )
@@ -45,5 +47,5 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 13,
         textAlign: "center"
-    }
+    },
 })

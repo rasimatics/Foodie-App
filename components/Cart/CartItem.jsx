@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity, StyleSheet, Animated} from 'react-n
 import {Swipeable} from "react-native-gesture-handler";
 import {Ionicons} from "@expo/vector-icons";
 
-export function CartItem() {
+export function CartItem({id, name, price}) {
     const [counter, setCounter] = useState(1)
 
     const handleCounter = (param) => {
@@ -29,6 +29,7 @@ export function CartItem() {
         <Swipeable
             renderRightActions={rightAction}
             overshootLeft={false}
+            overshootRight={false}
         >
             <View
                 style={styles.container}>
@@ -36,8 +37,8 @@ export function CartItem() {
                     <Image style={styles.image} source={require("../../assets/images/plateBig1.png")}/>
                 </View>
                 <View style={styles.dataContainer}>
-                    <Text style={{fontSize: 18, fontWeight: "bold", marginBottom: 8}}>Veggie tomato mix</Text>
-                    <Text style={{fontSize: 16, color: "#FA4A0C", fontWeight: "bold"}}>#1,900</Text>
+                    <Text style={{fontSize: 18, fontWeight: "bold", marginBottom: 8}}>{name}</Text>
+                    <Text style={{fontSize: 16, color: "#FA4A0C", fontWeight: "bold"}}>{price}</Text>
                     <View style={styles.counterContainer}>
                         <TouchableOpacity onPress={() => handleCounter("decrease")} style={styles.button}>
                             <Text style={styles.text}>-</Text>

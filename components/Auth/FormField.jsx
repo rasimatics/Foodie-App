@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text,TextInput,View } from 'react-native';
 
-export function FormField ({fieldname, isPassword}){
+export function FormField ({fieldname, isPassword},props){
+    // add props future works
   return (
     <View style={styles.container}>
         <Text style={styles.label}>{fieldname}</Text>
-        <TextInput secureTextEntry={isPassword} style={styles.inputBox} />
+        <TextInput  secureTextEntry={isPassword} style={styles.inputBox} {...props}/>
     </View>
   );
 }

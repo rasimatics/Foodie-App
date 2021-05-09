@@ -18,8 +18,8 @@ export function Auth({navigation}) {
     }
 
     return (
+        // use safeareaview
         <View style={styles.container}>
-
             <View style={styles.topPart}>
                 <Image style={styles.logo} source={require('../assets/images/logo.png')} />
                 <View style={styles.buttons}>

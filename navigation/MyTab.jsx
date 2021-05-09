@@ -1,8 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Auth } from "../screen/Auth";
 import { Home } from "../screen/Home";
 import { Profile } from "../screen/Profile";
+import { Wishlist } from "../screen/Wishlist";
 import { Ionicons, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
 
@@ -29,7 +29,7 @@ export function MyTab() {
               return focused
                 ? <Ionicons name="home" size={size} color="#FA4A0C" />
                 : <Ionicons name="home-outline" size={size} color={color} />;
-            case "Auth":
+            case "Wishlist":
               return focused
                 ? <Entypo name="heart" size={24} color="#FA4A0C" />
                 : <Entypo name="heart-outlined" size={24} color={color} />
@@ -45,7 +45,7 @@ export function MyTab() {
         },
       })}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Auth" component={Home} />
+      <Tab.Screen name="Wishlist" component={Wishlist} />
       <Tab.Screen options={{
         tabBarVisible: false,
       }} name="Profile" component={Profile} />

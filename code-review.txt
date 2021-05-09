@@ -1,0 +1,5 @@
+1. Add props to all functions based comp
+2. safeareaview
+3. Instead of sening navigation as props send function as props
+4. Create strings file as constants
+5. Store colors as constants
